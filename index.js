@@ -29,15 +29,20 @@ class List {
 let lists = []
 let listId = 0
 
-
+//for clicking the create button on list creation
 onClick('new-list', () => {
-    lists.push(new List(listId++, getValue('new-list-name')))
-    drawDOM()
-    //clears the input after input has been submited
-    document.getElementById('new-list-name').value = ''
+    //first checks to see if the input is an empty string
+    //if it is an empty string, it will not run the rest of the code
+    if(document.getElementById('new-list-name').value !== '') {
+        lists.push(new List(listId++, getValue('new-list-name')))
+        drawDOM()
+        //clears the input after input has been submited
+        document.getElementById('new-list-name').value = ''
+    }
 })
 
-//onClick function used for creating a new list
+//onClick function used adding an event listener
+//also used to execute funtion on whatever id is passed in
 //not to be confused with onclick all lowercase
 function onClick(id, action) {
     let element = document.getElementById(id)
