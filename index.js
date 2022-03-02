@@ -33,6 +33,8 @@ let listId = 0
 onClick('new-list', () => {
     lists.push(new List(listId++, getValue('new-list-name')))
     drawDOM()
+    //clears the input after input has been submited
+    document.getElementById('new-list-name').value = ''
 })
 
 //onClick function used for creating a new list
@@ -151,3 +153,18 @@ function clearElement(element) {
         element.removeChild(element.firstChild)
     }
 }
+
+
+//allows for the user to press enter for the input on creating shopping lists
+//(not for adding items to list or quanitity)
+document.getElementById('new-list-name')
+    .addEventListener('keyup', function(event) {
+        if (event.code === 'Enter')
+        {
+            event.preventDefault();
+            lists.push(new List(listId++, getValue('new-list-name')))
+            drawDOM()
+            //clears the input after input has been submited
+            document.getElementById('new-list-name').value = ''
+        }
+    });
