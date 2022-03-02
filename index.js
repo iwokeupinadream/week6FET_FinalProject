@@ -50,12 +50,12 @@ function onClick(id, action) {
     return element
 }
 
-//getValue used to return the id of a list
+//getValue used to return the vakye of an element
 function getValue(id) {
     return document.getElementById(id).value
 }
 
-//used to draw and redraw the dom
+//used to draw and redraw the dom after clearing elements
 function drawDOM() {
     let listDiv = document.getElementById('lists')
     clearElement(listDiv)
@@ -107,7 +107,8 @@ function createDeleteListButton(list) {
     return btn
 }
 
-//used to create a new item on each created list
+//used to create a new item button on each created list
+//as well as what to do when the button created has been clicked
 function createNewItemButton(list) {
     let btn = document.createElement('button')
     btn.className = 'btn btn-primary'
@@ -121,28 +122,40 @@ function createNewItemButton(list) {
 
 //used to create the table from the created list
 function createListTable(list) {
+    //create table element named table
     let table = document.createElement('table')
+    //sets table atributes to table that was created
     table.setAttribute('classs', 'table table-striped')
+    //row variable will insert a row on our table variable that we created
+    //the table variable when called will create a table element as seen above
     let row = table.insertRow(0)
+    //nameColumn will eventually create a table heading element for the item row
     let nameColumn = document.createElement('th')
+    //amount column will eventually a table heading for our quanity or amount row
     let amountColumn = document.createElement('th')
+    //giving names/innerHTML to our created table headings
     nameColumn.innerHTML = 'Item'
     amountColumn.innerHTML = 'Quantity'
+    //calling row to create a table and apending our table headers
     row.appendChild(nameColumn)
     row.appendChild(amountColumn)
     let formRow = table.insertRow(1)
     let nameTh = document.createElement('th')
     let amountTh = document.createElement('th')
     let createTh = document.createElement('th')
+    //createing a input element with the type of text to be able to add an item to the list
     let nameInput = document.createElement('input')
     nameInput.setAttribute('id', `name-input-${list.id}`)
     nameInput.setAttribute('type', 'text')
     nameInput.setAttribute('class', 'form-control')
+    //creating an input element with the type of text to be able to add item quanity/ amount to list
     let amountInput = document.createElement('input')
     amountInput.setAttribute('id', `amount-input-${list.id}`)
     amountInput.setAttribute('type', 'text')
     amountInput.setAttribute('class', 'form-control')
+    //adds new item button from createNewItemButton function
     let newItemButton = createNewItemButton(list)
+    //appending table headers and table data
     nameTh.appendChild(nameInput)
     amountTh.appendChild(amountInput)
     createTh.appendChild(newItemButton)
@@ -174,4 +187,14 @@ document.getElementById('new-list-name')
             //clears the input after input has been submited
             document.getElementById('new-list-name').value = ''
         }
-    });
+    })
+
+
+//features and ideas to still work on
+//bootstrap styling/css to make it look nice
+//add a way to update values in some way without deleting them since create read update and delete app
+//pressing enter to sumbit the item name and amount
+//when submitting item name or amount, dont let it accept an empty string
+//make it so that amount can not accept anything except numbers possibly? maybe not
+//create an example list using javaScript that shows up on loading the page to show as an example of a list possibly? maybe not
+//final bootstrap/css styling unless is already flawless by then
