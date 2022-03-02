@@ -157,9 +157,11 @@ function clearElement(element) {
 
 //allows for the user to press enter for the input on creating shopping lists
 //(not for adding items to list or quanitity)
+//checks to see if list name is empty before adding to lists. 
+//if the input is empty it wont be added
 document.getElementById('new-list-name')
     .addEventListener('keyup', function(event) {
-        if (event.code === 'Enter')
+        if (event.code === 'Enter' && document.getElementById('new-list-name').value !== '')
         {
             event.preventDefault();
             lists.push(new List(listId++, getValue('new-list-name')))
