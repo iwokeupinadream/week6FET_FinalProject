@@ -1,3 +1,4 @@
+//item class
 class Item {
     constructor(name, amount) {
         this.name = name
@@ -5,6 +6,7 @@ class Item {
     }
 }
 
+//list class
 class List {
     constructor(id, name) {
         this.id = id
@@ -22,24 +24,31 @@ class List {
     }
 }
 
+//lists array is to keep all of the created lists inside of
+//listId to keep track of the lists that have been created
 let lists = []
 let listId = 0
+
 
 onClick('new-list', () => {
     lists.push(new List(listId++, getValue('new-list-name')))
     drawDOM()
 })
 
+//onClick function used for creating a new list
+//not to be confused with onclick all lowercase
 function onClick(id, action) {
     let element = document.getElementById(id)
     element.addEventListener('click', action)
     return element
 }
 
+//getValue used to return the id of a list
 function getValue(id) {
     return document.getElementById(id).value
 }
 
+//used to draw and redraw the dom
 function drawDOM() {
     let listDiv = document.getElementById('lists')
     clearElement(listDiv)
@@ -56,6 +65,7 @@ function drawDOM() {
     }
 }
 
+//used to create item row
 function createItemRow(list, table, item) {
     let row = table.insertRow(2)
     row.insertCell(0).innerHTML = item.name
@@ -64,6 +74,7 @@ function createItemRow(list, table, item) {
     actions.appendChild(createDeleteRowButton(list, item))
 }
 
+//used to create a delete button on a created row
 function createDeleteRowButton(list, item) {
     let btn = document.createElement('button')
     btn.className = 'btn btn-primary'
@@ -76,6 +87,7 @@ function createDeleteRowButton(list, item) {
     return btn
 }
 
+//used to create delete list button on each list
 function createDeleteListButton(list) {
     let btn = document.createElement('button')
     btn.className = 'btn btn-primary'
@@ -88,10 +100,11 @@ function createDeleteListButton(list) {
     return btn
 }
 
+//used to create a new item on each created list
 function createNewItemButton(list) {
     let btn = document.createElement('button')
     btn.className = 'btn btn-primary'
-    btn.innerHTML = 'Create'
+    btn.innerHTML = 'Add New Item'
     btn.onclick = () => {
         list.items.push(new Item(getValue(`name-input-${list.id}`), getValue(`amount-input-${list.id}`) ))
         drawDOM()
@@ -99,6 +112,7 @@ function createNewItemButton(list) {
     return btn
 }
 
+//used to create the table from the created list
 function createListTable(list) {
     let table = document.createElement('table')
     table.setAttribute('classs', 'table table-striped')
@@ -131,6 +145,7 @@ function createListTable(list) {
     return table
 }
 
+//used to clear elements in the drawDOM function to re-draw the DOM
 function clearElement(element) {
     while(element.firstChild) {
         element.removeChild(element.firstChild)
