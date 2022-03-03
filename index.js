@@ -192,7 +192,8 @@ document.getElementById('new-list-name')
 
 //features and ideas to still work on
 //bootstrap styling/css to make it look nice
-//add a way to update values in some way without deleting them since create read update and delete app
+//add a way to update the list without deleting it (optional. assigment says update or delete)
+//the assigment says using a form to add entities. update the html to be a form. currently is just a card with an input tag and form-control classes
 //pressing enter to sumbit the item name and amount
 //when submitting item name or amount, dont let it accept an empty string
 //make it so that amount can not accept anything except numbers possibly? maybe not
