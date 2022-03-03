@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,32 +8,38 @@
     <title>Shopping List App</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
+
 <body class="container">
 
-    <br>
-
-    <div class="card">
-        <div class ="card-body">
-            <div class="row">
-                <div class="col-sm">
-                    <div class="form-group">
-                        <label for="new-list-name">Create New Shopping List</label>
-                        <input type="text" class="form-control" id="new-list-name">
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button id="new-list" class="btn btn-primary form-control">Create</button>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <form onkeypress="return event.keyCode != 13">
+                    <label for="new-list-name">Create New Shopping List</label>
+                    <input type="text" class="form-control" id="new-list-name">
+                    <button type="button" id="new-list-button" class="btn btn-primary form-control">Create</button>
+                </form>
             </div>
         </div>
-    </div> <br>
+    </div>
+    <div class="row">
 
-    <div id="lists">
+        <div class="col-sm">
+
+            <div id="lists">
+
+
+
+            </div>
+
+        </div>
 
     </div>
 
+
     <script src="index.js"></script>
-    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
+
 </html>
