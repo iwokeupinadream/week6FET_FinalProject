@@ -7,33 +7,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping List App</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">The Shopping Symposium</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home: Coming Soon!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features: Coming Soon!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing: Coming Soon!</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown link
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Don't Look Here</a></li>
+                            <li><a class="dropdown-item" href="#">Or Here</a></li>
+                            <li><a class="dropdown-item" href="#">Or here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="d-flex justify-content-center">
+        <h2>Welcome to the Online Shopping Lists!</h2>
+    </div>
+    <br>
 
     <div class="row">
         <div class="col-sm">
             <div class="form-group">
-                <form onkeypress="return event.keyCode != 13">
+                <form action="javascript:void(0);" method="POST" onsubmit="projectApp.renderLists()">
                     <label for="new-list-name">Create New Shopping List</label>
-                    <input type="text" class="form-control" id="new-list-name">
-                    <button type="button" id="new-list-button" class="btn btn-primary form-control">Create</button>
+                    <input type="text" class="form-control" id="new-list-name" placeholder="Create a list name">
+                    <button type="button" id="new-list-button" value="renderLists"
+                        class="btn btn-primary form-control">Create</button>
                 </form>
+                <p>You have  amount of items in your list</p>
+                <p id="counting"></p>
+            
+                <div class="row">
+                    <div class="col-sm">
+                        <div id="lists">
+
+                        </div>
+                    </div>
+                </div>
+                <div id="updated" role="aria-hidden">
+                    <form action="javascript:void(0);" method="POST" id="update-edit">
+                        <input type="text" name="updatename" id="update-todo" placeholder="Updated Name">
+                        <input type="number" name="updatequantity" placeholder="Updated Quantity">
+                        <input type="submit" value="Update" class="btn btn-secondary">
+                        <input type="submit" value="Delete" class="btn btn-secondary">
+                        <a onclick="updated"></a>
+                    </form>
+                </div>
+                
             </div>
         </div>
-    </div>
-    <div class="row">
-
-        <div class="col-sm">
-
-            <div id="lists">
-
-
-
-            </div>
-
-        </div>
-
     </div>
 
 

@@ -1,4 +1,3 @@
-//list class
 class List {
     constructor(id, name) {
         this.id = id
@@ -32,6 +31,9 @@ newListButton.addEventListener('click', () => {
     drawDOM()
 })
 
+//Attempting to prevent the pressing of enter in the textbox
+
+
 //allows for the user to press enter for the input on creating shopping lists
 //(not for adding items to list or quanitity)
 //checks to see if list name is empty before adding to lists. 
@@ -55,7 +57,7 @@ function drawDOM() {
     clearElement(listDiv)
     renderLists(lists)
     console.log(lists)
-}
+} 
 
 //used to clear elements in the drawDOM function to re-draw the DOM
 function clearElement(element) {
@@ -76,7 +78,7 @@ function renderLists(listArray) {
         for(let x = 0; x < listArray[i].items.length; x++) {
             createItemRow(listArray, table, listArray[i].items[x])
         }
-    }
+    } 
 }
 
 //creates a delete button for deleting a list
@@ -90,13 +92,12 @@ function createDeleteListButton(list) {
         drawDOM()
     }
     return btn
-}
-
+}  a
 
 //creates a html card with a "delete list" button attached to it
 function createListCard(list) {
-    let card = document.createElement('card')
-    let listTitle = document.createElement('h2')
+    let card = document.createElement('table')
+    let listTitle = document.createElement('h1') 
     listTitle.textContent = list.name
     listTitle.append(createDeleteListButton(list)) 
     card.appendChild(listTitle)
@@ -140,6 +141,8 @@ function createListTable(list) {
         return table
 }
 
+
+
 //used to create a new item button on each created list
 //as well as what to do when the button created has been clicked
 function createNewItemButton(list) {
@@ -155,6 +158,8 @@ function createNewItemButton(list) {
     return btn
 }
 
+
+
 //used to create item row
 function createItemRow(list, table, item) {
     let row = table.insertRow(2)
@@ -164,8 +169,9 @@ function createItemRow(list, table, item) {
     actions.appendChild(createDeleteRowButton(list, item))
 }
 
+
 //used to create a delete button on a created row
-function createDeleteRowButton(list, item) {
+function createDeleteRowButton(item) {
     let btn = document.createElement('button')
     btn.className = 'btn btn-primary'
     btn.innerHTML = 'Delete'
@@ -176,6 +182,8 @@ function createDeleteRowButton(list, item) {
     }
     return btn
 }
+
+
 
 //used for testing
 //drawDOM()
@@ -197,3 +205,6 @@ function createDeleteRowButton(list, item) {
 //index.html return keyword underlined in red... without this statment and without return keyword the page will refresh upon hitting enter 
 //(issue related to it being a form from what i understand)
 //still works as intended but is showing that it is an issue. probably safe to ignore if cant find solution
+
+
+ 
