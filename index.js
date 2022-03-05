@@ -74,17 +74,16 @@ function renderLists(listArray) {
         listDiv.insertBefore(card, listDiv.firstChild)
         let table = createListTable(listArray[i])
         card.appendChild(table)
-            
         for(let x = 0; x < listArray[i].items.length; x++) {
-            createItemRow(listArray, table, listArray[i].items[x])
+            createItemRow(listArray[i], table, listArray[i].items[x])
         }
-    } 
+    }
 }
 
 //creates a delete button for deleting a list
 function createDeleteListButton(list) {
     let btn = document.createElement('button')
-    btn.className = 'btn btn-primary'
+    btn.className = 'btn btn-primary mr-1'
     btn.innerHTML = 'Delete List'
     btn.onclick = () => {
         let index = lists.indexOf(list)
@@ -97,8 +96,8 @@ function createDeleteListButton(list) {
 //creates a html card with a "delete list" button attached to it
 function createListCard(list) {
     let card = document.createElement('table')
-    let listTitle = document.createElement('h1') 
-    listTitle.textContent = list.name
+    let listTitle = document.createElement('h3') 
+    listTitle.textContent = list.name + " ";
     listTitle.append(createDeleteListButton(list)) 
     card.appendChild(listTitle)
     
@@ -171,7 +170,7 @@ function createItemRow(list, table, item) {
 
 
 //used to create a delete button on a created row
-function createDeleteRowButton(item) {
+function createDeleteRowButton(list, item) {
     let btn = document.createElement('button')
     btn.className = 'btn btn-primary'
     btn.innerHTML = 'Delete'

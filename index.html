@@ -53,7 +53,7 @@
     <div class="row">
         <div class="col-sm">
             <div class="form-group">
-                <form action="javascript:void(0);" method="POST" onsubmit="projectApp.renderLists()">
+                <form action="javascript:void(0);" method="POST">
                     <label for="new-list-name">Create New Shopping List</label>
                     <input type="text" class="form-control" id="new-list-name" placeholder="Create a list name">
                     <button type="button" id="new-list-button" value="renderLists"
@@ -68,15 +68,6 @@
 
                         </div>
                     </div>
-                </div>
-                <div id="updated" role="aria-hidden">
-                    <form action="javascript:void(0);" method="POST" id="update-edit">
-                        <input type="text" name="updatename" id="update-todo" placeholder="Updated Name">
-                        <input type="number" name="updatequantity" placeholder="Updated Quantity">
-                        <input type="submit" value="Update" class="btn btn-secondary">
-                        <input type="submit" value="Delete" class="btn btn-secondary">
-                        <a onclick="updated"></a>
-                    </form>
                 </div>
                 
             </div>
