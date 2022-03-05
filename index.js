@@ -89,7 +89,7 @@ function createDeleteListButton(list) {
         drawDOM()
     }
     return btn
-}  a
+}  
 
 //creates a html card with a "delete list" button attached to it
 function createListCard(list) {
