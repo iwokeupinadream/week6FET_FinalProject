@@ -177,8 +177,12 @@ function createDeleteRowButton(list, item) {
     return btn
 }
 
+//used for testing
+//drawDOM()
 
-drawDOM()
+
+
+
 
 //features and ideas to still work on
 //bootstrap styling/css to make it look nice
@@ -188,3 +192,8 @@ drawDOM()
 //make it so that amount can not accept anything except numbers possibly? maybe not
 //create an example list using javaScript that shows up on loading the page to show as an example of a list possibly? maybe not
 //final bootstrap/css styling unless is already flawless by then
+
+
+//index.html return keyword underlined in red... without this statment and without return keyword the page will refresh upon hitting enter 
+//(issue related to it being a form from what i understand)
+//still works as intended but is showing that it is an issue. probably safe to ignore if cant find solution
