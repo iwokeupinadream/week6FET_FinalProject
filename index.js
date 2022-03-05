@@ -1,3 +1,4 @@
+//list class
 class List {
     constructor(id, name) {
         this.id = id
@@ -30,9 +31,6 @@ newListButton.addEventListener('click', () => {
     document.getElementById('new-list-name').value = ''
     drawDOM()
 })
-
-//Attempting to prevent the pressing of enter in the textbox
-
 
 //allows for the user to press enter for the input on creating shopping lists
 //(not for adding items to list or quanitity)
@@ -182,24 +180,8 @@ function createDeleteRowButton(list, item) {
     return btn
 }
 
-
-
 //used for testing
 //drawDOM()
-
-
-
-
-
-//features and ideas to still work on
-//bootstrap styling/css to make it look nice
-//add a way to update the list without deleting it (optional. assigment says update or delete)
-//pressing enter to sumbit the item name and amount
-//when submitting item name or amount, dont let it accept an empty string
-//make it so that amount can not accept anything except numbers possibly? maybe not
-//create an example list using javaScript that shows up on loading the page to show as an example of a list possibly? maybe not
-//final bootstrap/css styling unless is already flawless by then
-
 
 //index.html return keyword underlined in red... without this statment and without return keyword the page will refresh upon hitting enter 
 //(issue related to it being a form from what i understand)
