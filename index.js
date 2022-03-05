@@ -15,8 +15,8 @@ class Item {
     }
 }
 
-//array to store entites created
-//listId to give each list a unique id to later be used
+//lists array to store created, updated, and deleted lists
+//list id to keep track of created lists by an id
 let lists = []
 let listId = 0
 
@@ -29,7 +29,6 @@ newListButton.addEventListener('click', () => {
     listId++
     lists.push(new List(listId, newListName))
     document.getElementById('new-list-name').value = ''
-    console.log(lists)
     drawDOM()
 })
 
@@ -38,56 +37,76 @@ newListButton.addEventListener('click', () => {
 //checks to see if list name is empty before adding to lists. 
 //if the input is empty it wont be added
 document.getElementById('new-list-name')
-    .addEventListener('keyup', function(event) {
-        if (event.code === 'Enter' && document.getElementById('new-list-name').value !== '')
-        {
+    .addEventListener('keyup', function (event) {
+        if (event.code === 'Enter' && document.getElementById('new-list-name').value !== '') {
             event.preventDefault();
             lists.push(new List(listId++, document.getElementById('new-list-name').value))
-            
+
             //clears the input after input has been submited
             document.getElementById('new-list-name').value = ''
-            console.log(lists)
+            
             drawDOM()
         }
     })
 
-//1/2 of the draw dom function
+//function for updating the dom after user creates, or deletes
 function drawDOM() {
     let listDiv = document.getElementById('lists')
     clearElement(listDiv)
-    createListTitle(lists)
+    renderLists(lists)
+    console.log(lists)
 }
 
 //used to clear elements in the drawDOM function to re-draw the DOM
 function clearElement(element) {
-    while(element.firstChild) {
+    while (element.firstChild) {
         element.removeChild(element.firstChild)
     }
 }
 
-//second half of the draw dom function although name doesnt reflect. probably change later
-function createListTitle(list) {
-    
-    for(list of lists) {
+//function used to render the list title and table with table items
+function renderLists(listArray) {
+    for(let i = 0; i < listArray.length; i++) {
         let listDiv = document.getElementById('lists')
-        let listTitle = document.createElement('h2')
-        listTitle.textContent = list.name
-        listDiv.insertBefore(listTitle, listDiv.firstChild)
-        listTitle.append(createDeleteListButton(list))  
-        let table = createListTable(list)
-        listTitle.appendChild(table)
-        for(item of list.items) {
-            createItemRow(list, table, item )
+        let card = createListCard(listArray[i])
+        listDiv.insertBefore(card, listDiv.firstChild)
+        let table = createListTable(listArray[i])
+        card.appendChild(table)
+            
+        for(let x = 0; x < listArray[i].items.length; x++) {
+            createItemRow(listArray, table, listArray[i].items[x])
         }
-        
     }
 }
 
-//create a table out of the list
-//probably should clean up later somehow
-function createListTable(list) {
+//creates a delete button for deleting a list
+function createDeleteListButton(list) {
+    let btn = document.createElement('button')
+    btn.className = 'btn btn-primary'
+    btn.innerHTML = 'Delete List'
+    btn.onclick = () => {
+        let index = lists.indexOf(list)
+        lists.splice(index, 1)
+        drawDOM()
+    }
+    return btn
+}
+
+
+//creates a html card with a "delete list" button attached to it
+function createListCard(list) {
+    let card = document.createElement('card')
+    let listTitle = document.createElement('h2')
+    listTitle.textContent = list.name
+    listTitle.append(createDeleteListButton(list)) 
+    card.appendChild(listTitle)
     
-        let table = document.createElement('table')
+    return card
+}
+
+//creates a table for a list that is passed into it
+function createListTable(list) {
+    let table = document.createElement('table')
         table.setAttribute('classs', 'table table-striped')
         let row = table.insertRow(0)
         let itemColumn = document.createElement('th')
@@ -99,7 +118,7 @@ function createListTable(list) {
         let formRow = table.insertRow(1)
         let itemTd = document.createElement('td')
         let amountTd = document.createElement('td')
-        let createTd = document.createElement('td')
+        let newItemButtonTd = document.createElement('td')
         let itemNameInput = document.createElement('input')
         itemNameInput.setAttribute('id', `item-name-input-${list.id}`)
         itemNameInput.setAttribute('type', 'text')
@@ -112,25 +131,13 @@ function createListTable(list) {
         
         itemTd.appendChild(itemNameInput)
         amountTd.appendChild(amountInput)
-        createTd.appendChild(newItemButton)
+        newItemButtonTd.appendChild(newItemButton)
         
         formRow.appendChild(itemTd)
         formRow.appendChild(amountTd)
-        formRow.appendChild(createTd)
-        return table
-}
+        formRow.appendChild(newItemButtonTd)
 
-//create delete list button when a list is created
-function createDeleteListButton(list) {
-    let btn = document.createElement('button')
-    btn.className = 'btn btn-primary'
-    btn.innerHTML = 'Delete List'
-    btn.onclick = () => {
-        let index = lists.indexOf(list)
-        lists.splice(index, 1)
-        drawDOM()
-    }
-    return btn
+        return table
 }
 
 //used to create a new item button on each created list
@@ -170,8 +177,8 @@ function createDeleteRowButton(list, item) {
     return btn
 }
 
-drawDOM()
 
+drawDOM()
 
 //features and ideas to still work on
 //bootstrap styling/css to make it look nice
@@ -181,4 +188,3 @@ drawDOM()
 //make it so that amount can not accept anything except numbers possibly? maybe not
 //create an example list using javaScript that shows up on loading the page to show as an example of a list possibly? maybe not
 //final bootstrap/css styling unless is already flawless by then
-//sometimes undefined gets returned in the console when manually logging lists after bug testing.. doesnt seem to cause any issues but still probably not something intended
