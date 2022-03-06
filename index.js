@@ -91,7 +91,7 @@ function createDeleteListButton(list) {
     return btn
 }  
 
-//creates a html card with a "delete list" button attached to it
+//creates a html table with a "delete list" button attached to it
 function createListCard(list) {
     let card = document.createElement('table')
     let listTitle = document.createElement('h3') 
@@ -182,10 +182,3 @@ function createDeleteRowButton(list, item) {
 
 //used for testing
 //drawDOM()
-
-//index.html return keyword underlined in red... without this statment and without return keyword the page will refresh upon hitting enter 
-//(issue related to it being a form from what i understand)
-//still works as intended but is showing that it is an issue. probably safe to ignore if cant find solution
-
-
- 
